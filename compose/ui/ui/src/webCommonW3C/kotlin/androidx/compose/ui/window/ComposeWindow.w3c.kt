@@ -115,7 +115,7 @@ private abstract external class ExtendedTouchEvent : TouchEvent {
     val force: Double
 }
 
-internal interface ComposeWindowState {
+interface ComposeWindowState {
     fun init() {}
     fun sizeFlow(): Flow<IntSize>
 
@@ -729,6 +729,19 @@ fun ComposeViewport(
     viewportContainer: Element,
     configure: ComposeViewportConfiguration.() -> Unit = {},
     content: @Composable () -> Unit = { }
+) = ComposeViewport(
+    viewportContainer = viewportContainer,
+    configure = configure,
+    windowState = DefaultWindowState(viewportContainer),
+    content = content
+)
+
+@ExperimentalComposeUiApi
+fun ComposeViewport(
+    viewportContainer: Element,
+    configure: ComposeViewportConfiguration.() -> Unit = {},
+    windowState: ComposeWindowState,
+    content: @Composable () -> Unit = { }
 ) = onSkikoReady {
     val canvas = document.createElement("canvas") as HTMLCanvasElement
     canvas.setAttribute("tabindex", "0")
@@ -776,6 +789,6 @@ fun ComposeViewport(
         a11yContainerElement = a11yContainerElement,
         content = content,
         configuration = configuration,
-        state = DefaultWindowState(viewportContainer)
+        state = windowState
     )
 }

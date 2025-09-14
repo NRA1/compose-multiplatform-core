@@ -29,7 +29,7 @@ private external class AbortController {
 
 private fun withSignal(signal: AbortSignal): AddEventListenerOptions = js("({signal: signal})")
 
-internal class EventTargetListener(private val eventTarget: EventTarget) {
+class EventTargetListener(private val eventTarget: EventTarget) {
     private val abortController = AbortController()
 
     fun addDisposableEvent(eventName: String, handler: (Event) -> Unit) {
