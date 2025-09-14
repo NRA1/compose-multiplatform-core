@@ -83,6 +83,19 @@ fun ComposeViewport(
     viewportContainer: Element,
     configure: ComposeViewportConfiguration.() -> Unit = {},
     content: @Composable () -> Unit = { }
+) = ComposeViewport(
+    viewportContainer = viewportContainer,
+    configure = configure,
+    windowState = DefaultWindowState(viewportContainer),
+    content = content
+)
+
+@ExperimentalComposeUiApi
+fun ComposeViewport(
+    viewportContainer: Element,
+    configure: ComposeViewportConfiguration.() -> Unit = {},
+    windowState: ComposeWindowState,
+    content: @Composable () -> Unit = { }
 ) = onSkikoReady {
     viewportContainer.clear()
 
@@ -195,6 +208,6 @@ fun ComposeViewport(
         a11yContainerElement = a11yContainerElement,
         content = content,
         configuration = configuration,
-        state = DefaultWindowState(viewportContainer)
+        state = windowState
     )
 }

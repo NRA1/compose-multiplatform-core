@@ -34,7 +34,7 @@ private fun withSignal(signal: AbortSignal): AddEventListenerOptions = js("({sig
 private fun withSignalAndPassive(signal: AbortSignal, passive: Boolean): AddEventListenerOptions =
     js("({signal: signal, passive: passive})")
 
-internal class EventTargetListener(private val eventTarget: EventTarget) {
+class EventTargetListener(private val eventTarget: EventTarget) {
     private val abortController = AbortController()
 
     fun addDisposableEvent(eventName: String, handler: (Event) -> Unit) {

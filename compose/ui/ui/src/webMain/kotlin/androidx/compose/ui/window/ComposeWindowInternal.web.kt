@@ -91,6 +91,7 @@ import androidx.compose.ui.viewinterop.TrackInteropPlacementContainer
 import androidx.compose.ui.viewinterop.WebInteropContainer
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.enableSavedStateHandles
+import kotlin.js.ExperimentalWasmJsInterop
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.coroutines.Dispatchers
@@ -125,7 +126,7 @@ import org.w3c.dom.pointerevents.PointerEvent
 private val actualDensity
     get() = window.devicePixelRatio
 
-internal interface ComposeWindowState {
+interface ComposeWindowState {
     fun init() {}
     fun sizeFlow(): Flow<IntSize>
 
