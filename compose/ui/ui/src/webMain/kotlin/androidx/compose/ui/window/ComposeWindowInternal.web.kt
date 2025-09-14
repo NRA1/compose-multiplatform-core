@@ -123,7 +123,7 @@ import org.w3c.dom.pointerevents.PointerEvent
 private val actualDensity
     get() = window.devicePixelRatio
 
-internal interface ComposeWindowState {
+interface ComposeWindowState {
     fun init() {}
     fun sizeFlow(): Flow<IntSize>
 
